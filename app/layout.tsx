@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Quicksand} from "next/font/google";
+import {GoogleOAuthProvider} from "@react-oauth/google"
+import  { Toaster } from 'react-hot-toast';
+
 import "./globals.css";
 
+
 const inter = Inter({ subsets: ["latin"] });
+const quicksand = Quicksand({subsets: ["latin"]});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +21,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <GoogleOAuthProvider clientId="398020698451-a1s11tgcjduffell5mc0237v777o4788.apps.googleusercontent.com">
+        {children}
+        <Toaster />
+        </GoogleOAuthProvider>
+        </body>
     </html>
   );
-}
+} 
+
+
