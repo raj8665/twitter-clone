@@ -9,4 +9,4 @@ export const graphqlClient = new GraphQLClient("http://localhost:8000/graphql", 
         : "" , 
      }),
 
-});
+}); 
