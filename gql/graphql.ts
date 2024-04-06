@@ -16,15 +16,46 @@ export type Scalars = {
   Float: { input: number; output: number; }
 };
 
+export type CreateTweetData = {
+  content: Scalars['String']['input'];
+  imageURL?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type Mutation = {
+  __typename?: 'Mutation';
+  createTweet?: Maybe<Tweet>;
+};
+
+
+export type MutationCreateTweetArgs = {
+  payload: CreateTweetData;
+};
+
 export type Query = {
   __typename?: 'Query';
+  getAllTweets?: Maybe<Array<Maybe<Tweet>>>;
   getCurrentUser?: Maybe<User>;
+  getSignedURLForTweet?: Maybe<Scalars['String']['output']>;
   verifyGoogleToken: Scalars['String']['output'];
+};
+
+
+export type QueryGetSignedUrlForTweetArgs = {
+  imageName: Scalars['String']['input'];
+  imageType: Scalars['String']['input'];
 };
 
 
 export type QueryVerifyGoogleTokenArgs = {
   token: Scalars['String']['input'];
+};
+
+export type Tweet = {
+  __typename?: 'Tweet';
+  author?: Maybe<User>;
+  content: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  imageURL?: Maybe<Scalars['String']['output']>;
 };
 
 export type User = {
@@ -34,6 +65,7 @@ export type User = {
   id: Scalars['ID']['output'];
   lastName?: Maybe<Scalars['String']['output']>;
   profileImageURL?: Maybe<Scalars['String']['output']>;
+  tweets?: Maybe<Array<Maybe<Tweet>>>;
 };
 
 export type VerifyUserGoogleTokenQueryVariables = Exact<{
